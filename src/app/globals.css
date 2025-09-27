@@ -1,12 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --accent: #10b981; /* Electric green */
-  --accent-dark: #059669;
-  --charcoal: #374151;
-  --light-gray: #f9fafb;
+  --accent: #ff6b6b; /* Vibrant coral */
+  --accent-dark: #ff5252;
+  --accent-light: #ff8a80;
+  --secondary: #4ecdc4; /* Teal */
+  --secondary-dark: #26a69a;
+  --tertiary: #45b7d1; /* Sky blue */
+  --tertiary-dark: #2196f3;
+  --purple: #a8e6cf; /* Mint green */
+  --purple-dark: #7fcdcd;
+  --charcoal: #2c3e50;
+  --light-gray: #f8fafc;
+  --gradient-primary: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+  --gradient-secondary: linear-gradient(135deg, #45b7d1 0%, #96ceb4 100%);
+  --gradient-accent: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
 }
 
 @theme inline {
@@ -14,17 +27,107 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-accent-dark: var(--accent-dark);
+  --color-accent-light: var(--accent-light);
+  --color-secondary: var(--secondary);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-dark: var(--tertiary-dark);
+  --color-purple: var(--purple);
+  --color-purple-dark: var(--purple-dark);
   --color-charcoal: var(--charcoal);
   --color-light-gray: var(--light-gray);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-handwriting: 'Dancing Script', cursive;
+  --font-display: 'Poppins', sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-display), system-ui, -apple-system, sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Handwritten font class */
+.font-handwriting {
+  font-family: var(--font-handwriting);
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.8); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Slide in animation */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in-up {
+  animation: slideInUp 0.8s ease-out;
+}
+
+/* Bounce animation */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.bounce-in {
+  animation: bounce-in 0.8s ease-out;
 }
 
 /* Custom scrollbar */
@@ -37,10 +140,29 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: var(--gradient-primary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-dark);
+  background: var(--gradient-secondary);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.glow:hover {
+  box-shadow: 0 0 30px rgba(255, 107, 107, 0.6);
 }
