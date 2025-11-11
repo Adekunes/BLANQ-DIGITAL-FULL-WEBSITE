@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import FluidGlass from '@/components/FluidGlass';
 import CTAButton from '@/components/CTAButton';
 
 export const metadata: Metadata = {
@@ -39,21 +40,59 @@ export default function SocialMediaPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-light-gray to-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-charcoal mb-6">
-              Social Media <span className="text-accent">Management</span>
+      {/* Hero Section with Fluid Glass */}
+      <section className="relative h-screen">
+        <FluidGlass 
+          mode="bar"
+          barProps={{
+            scale: 0.2,
+            ior: 1.1,
+            thickness: 6,
+            chromaticAberration: 0.08,
+            anisotropy: 0.015,
+            navItems: [
+              { label: 'Services', link: '/services' },
+              { label: 'Web Development', link: '/services/web-development' },
+              { label: 'Content Creation', link: '/services/content-creation' },
+              { label: 'Contact', link: '/contact' }
+            ]
+          }}
+        />
+        
+        {/* Overlay Content */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <div className="text-center max-w-4xl mx-auto px-4">
+            <div className="mb-6">
+              <span className="font-handwriting text-4xl md:text-5xl text-white/90 drop-shadow-lg">
+                Social Media Management
+              </span>
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black text-white mb-8">
+              Build{' '}
+              <span className="gradient-text bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-300 bg-clip-text text-transparent">
+                authentic
+              </span>
+              <br />
+              engagement
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Strategic content and community management that builds authentic engagement and drives results.
+            <p className="text-2xl md:text-3xl text-white/90 mb-8 font-light">
+              Strategic content and community management that drives real results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton href="/contact" variant="primary" size="lg">
+              <CTAButton 
+                href="/contact" 
+                variant="secondary" 
+                size="lg"
+                className="px-12 py-6 text-2xl font-bold rounded-full bg-white text-purple-600 hover:bg-yellow-300 glow"
+              >
                 Get a Free Audit
               </CTAButton>
-              <CTAButton href="/contact" variant="secondary" size="lg">
+              <CTAButton 
+                href="/case-studies" 
+                variant="secondary" 
+                size="lg"
+                className="px-12 py-6 text-2xl font-bold rounded-full glass border-2 border-white/30 backdrop-blur-lg text-white hover:bg-white/20"
+              >
                 View Our Results
               </CTAButton>
             </div>

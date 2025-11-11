@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import FluidGlass from '@/components/FluidGlass';
 import CTAButton from '@/components/CTAButton';
 
 export const metadata: Metadata = {
@@ -55,21 +56,57 @@ export default function WebDevelopmentPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-light-gray to-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-charcoal mb-6">
-              Web <span className="text-accent">Development</span>
+      {/* Hero Section with Fluid Glass */}
+      <section className="relative h-screen">
+        <FluidGlass 
+          mode="cube"
+          cubeProps={{
+            scale: 0.3,
+            ior: 1.2,
+            thickness: 8,
+            chromaticAberration: 0.15,
+            anisotropy: 0.02,
+            navItems: [
+              { label: 'Services', link: '/services' },
+              { label: 'Social Media', link: '/services/social-media' },
+              { label: 'Content Creation', link: '/services/content-creation' },
+              { label: 'Contact', link: '/contact' }
+            ]
+          }}
+        />
+        
+        {/* Overlay Content */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <div className="text-center max-w-4xl mx-auto px-4">
+            <div className="mb-6">
+              <span className="font-handwriting text-4xl md:text-5xl text-white/90 drop-shadow-lg">
+                Web Development
+              </span>
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black text-white mb-8">
+              Websites that{' '}
+              <span className="gradient-text bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-300 bg-clip-text text-transparent">
+                convert
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Custom websites that convert visitors into customers. Fast, mobile-first, and built for growth.
+            <p className="text-2xl md:text-3xl text-white/90 mb-8 font-light">
+              Fast, mobile-first websites built for growth and conversions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton href="/contact" variant="primary" size="lg">
+              <CTAButton 
+                href="/contact" 
+                variant="secondary" 
+                size="lg"
+                className="px-12 py-6 text-2xl font-bold rounded-full bg-white text-purple-600 hover:bg-yellow-300 glow"
+              >
                 Get a Free Audit
               </CTAButton>
-              <CTAButton href="/contact" variant="secondary" size="lg">
+              <CTAButton 
+                href="/portfolio" 
+                variant="secondary" 
+                size="lg"
+                className="px-12 py-6 text-2xl font-bold rounded-full glass border-2 border-white/30 backdrop-blur-lg text-white hover:bg-white/20"
+              >
                 View Our Work
               </CTAButton>
             </div>

@@ -6,57 +6,42 @@ import Link from 'next/link';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
   return (
-    <header className="glass sticky top-0 z-50 backdrop-blur-lg border-b border-white/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center group">
-            <span className="text-3xl font-black text-white group-hover:scale-110 transition-transform duration-300">BLANQ</span>
-            <span className="text-3xl font-handwriting text-yellow-300 ml-2 group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
-              DIGITAL
-            </span>
+          <Link href="/" className="flex items-center">
+            <span className="text-2xl font-bold text-white">BLANQ</span>
+            <span className="text-2xl font-handwriting text-amber-500 ml-2">Digital</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <Link href="/" className="text-white/90 hover:text-yellow-300 transition-all duration-300 font-semibold hover:scale-105">
+          <nav className="hidden md:flex items-center gap-6">
+            <Link href="/" className="text-white/80 hover:text-amber-500 transition-colors text-sm font-medium">
               Home
             </Link>
-            <Link href="/services" className="text-white/90 hover:text-pink-300 transition-all duration-300 font-semibold hover:scale-105">
+            <Link href="/services" className="text-white/80 hover:text-amber-500 transition-colors text-sm font-medium">
               Services
             </Link>
-            <Link href="/portfolio" className="text-white/90 hover:text-purple-300 transition-all duration-300 font-semibold hover:scale-105">
+            <Link href="/portfolio" className="text-white/80 hover:text-amber-500 transition-colors text-sm font-medium">
               Portfolio
             </Link>
-            <Link href="/case-studies" className="text-white/90 hover:text-blue-300 transition-all duration-300 font-semibold hover:scale-105">
+            <Link href="/case-studies" className="text-white/80 hover:text-amber-500 transition-colors text-sm font-medium">
               Case Studies
             </Link>
-            <Link href="/about" className="text-white/90 hover:text-green-300 transition-all duration-300 font-semibold hover:scale-105">
+            <Link href="/about" className="text-white/80 hover:text-amber-500 transition-colors text-sm font-medium">
               About
             </Link>
-            <Link href="/contact" className="text-white/90 hover:text-orange-300 transition-all duration-300 font-semibold hover:scale-105">
-              Contact
+            <Link href="/contact" className="bg-amber-500 hover:bg-amber-600 text-black px-6 py-2 rounded-full font-semibold text-sm transition-colors">
+              Get Started
             </Link>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Link
-              href="/contact"
-              className="group relative px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-bold hover-lift glow overflow-hidden"
-            >
-              <span className="relative z-10">Book a Call</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
-          </div>
-
           {/* Mobile menu button */}
           <button
-            onClick={toggleMenu}
-            className="md:hidden p-2 rounded-md text-charcoal hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 text-white hover:text-amber-500 transition-colors"
             aria-label="Toggle menu"
           >
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -71,59 +56,57 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+          <div className="md:hidden py-4 border-t border-white/10">
+            <div className="space-y-2">
               <Link
                 href="/"
-                className="block px-3 py-2 text-charcoal hover:text-accent transition-colors"
+                className="block px-4 py-2 text-white/80 hover:text-amber-500 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/services"
-                className="block px-3 py-2 text-charcoal hover:text-accent transition-colors"
+                className="block px-4 py-2 text-white/80 hover:text-amber-500 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
               </Link>
               <Link
                 href="/portfolio"
-                className="block px-3 py-2 text-charcoal hover:text-accent transition-colors"
+                className="block px-4 py-2 text-white/80 hover:text-amber-500 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Portfolio
               </Link>
               <Link
                 href="/case-studies"
-                className="block px-3 py-2 text-charcoal hover:text-accent transition-colors"
+                className="block px-4 py-2 text-white/80 hover:text-amber-500 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Case Studies
               </Link>
               <Link
                 href="/about"
-                className="block px-3 py-2 text-charcoal hover:text-accent transition-colors"
+                className="block px-4 py-2 text-white/80 hover:text-amber-500 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="block px-3 py-2 text-charcoal hover:text-accent transition-colors"
+                className="block px-4 py-2 text-white/80 hover:text-amber-500 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
-              <div className="pt-2">
-                <Link
-                  href="/contact"
-                  className="block bg-accent text-white px-3 py-2 rounded-lg hover:bg-accent-dark transition-colors font-medium text-center"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Book a Call
-                </Link>
-              </div>
+              <Link
+                href="/contact"
+                className="block mt-4 mx-4 bg-amber-500 text-black px-6 py-3 rounded-full font-semibold text-center hover:bg-amber-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Get Started
+              </Link>
             </div>
           </div>
         )}

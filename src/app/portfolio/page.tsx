@@ -1,69 +1,57 @@
-import { Metadata } from 'next';
-import { caseStudies } from '@/lib/caseStudies';
-import CaseStudyCard from '@/components/CaseStudyCard';
-import CTAButton from '@/components/CTAButton';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Portfolio - BLANQ Digital',
-  description: 'Explore our portfolio of web development, social media, and content creation projects. See real results from real clients.',
-};
+import FluidGlass from '@/components/FluidGlass';
+import Link from 'next/link';
 
 export default function PortfolioPage() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-light-gray to-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-charcoal mb-6">
-              Our <span className="text-accent">Portfolio</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Explore our work and see the results we've delivered for clients across different industries.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-black">
+      <div style={{ height: '100vh', position: 'relative' }}>
+        <FluidGlass 
+          mode="lens"
+          lensProps={{
+            scale: 0.25,
+            ior: 1.15,
+            thickness: 5,
+            chromaticAberration: 0.1,
+            anisotropy: 0.01,
+            navItems: [
+              { label: 'Home', link: '/' },
+              { label: 'Services', link: '/services' },
+              { label: 'Portfolio', link: '/portfolio' },
+              { label: 'Case Studies', link: '/case-studies' },
+              { label: 'About', link: '/about' },
+              { label: 'Contact', link: '/contact' }
+            ]
+          }}
+        />
+      </div>
 
-      {/* Portfolio Grid */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {caseStudies.map((project) => (
-              <CaseStudyCard
-                key={project.id}
-                title={project.title}
-                client={project.client}
-                description={project.description}
-                metrics={project.results.slice(0, 3).map(result => ({
-                  label: result.metric,
-                  value: result.value
-                }))}
-                image={project.image}
-                href={`/case-studies/${project.id}`}
-              />
-            ))}
+      {/* Overlay Content */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center">
+        <div className="text-center max-w-4xl mx-auto px-4">
+          <div className="mb-6">
+            <span className="font-handwriting text-4xl md:text-5xl text-white/90 drop-shadow-lg">
+              Our Portfolio
+            </span>
           </div>
-
-          {/* CTA Section */}
-          <div className="text-center bg-light-gray rounded-2xl p-12">
-            <h2 className="text-3xl font-bold text-charcoal mb-4">
-              Ready to be our next success story?
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Let's work together to create something amazing for your business.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton href="/contact" variant="primary" size="lg">
-                Start Your Project
-              </CTAButton>
-              <CTAButton href="/contact" variant="secondary" size="lg">
-                View Case Studies
-              </CTAButton>
-            </div>
-          </div>
+          <h1 className="text-6xl md:text-8xl font-black text-white mb-8">
+            Explore our{' '}
+            <span className="gradient-text bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-300 bg-clip-text text-transparent">
+              amazing work
+            </span>
+          </h1>
+          <p className="text-2xl md:text-3xl text-white/90 mb-8 font-light">
+            Interactive 3D lens showcasing our best projects
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block px-12 py-6 bg-amber-500 hover:bg-amber-600 text-black rounded-full font-bold text-xl transition-colors"
+          >
+            Start Your Project
+          </Link>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

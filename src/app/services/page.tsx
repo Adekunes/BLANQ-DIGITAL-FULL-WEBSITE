@@ -1,98 +1,126 @@
-import { Metadata } from 'next';
-import ServiceCard from '@/components/ServiceCard';
-import CTAButton from '@/components/CTAButton';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Services - BLANQ Digital',
-  description: 'Web development, social media management, and content creation services. Honest work, measurable growth.',
-};
+import { Check, Calendar } from 'lucide-react';
+import Link from 'next/link';
+import { calendarLinks } from '@/config/calendar';
+import { events } from '@/utils/analytics';
 
 export default function ServicesPage() {
-  const services = [
-    {
-      title: "Web Development",
-      description: "Custom websites that convert visitors into customers. Fast, mobile-first, and built for growth.",
-      icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-      ),
-      href: "/services/web-development",
-      metrics: "Avg. 40% faster load times"
-    },
-    {
-      title: "Social Media Management",
-      description: "Strategic content and community management that builds authentic engagement and drives results.",
-      icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2M9 12h6m-6 4h6" />
-        </svg>
-      ),
-      href: "/services/social-media",
-      metrics: "+62% engagement in 90 days"
-    },
-    {
-      title: "Content Creation & Ads",
-      description: "High-converting ad creatives and content that stops the scroll and drives action.",
-      icon: (
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-        </svg>
-      ),
-      href: "/services/content-creation",
-      metrics: "3.2x ROAS average"
-    }
-  ];
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-light-gray to-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-charcoal mb-6">
-              Our <span className="text-accent">Services</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              We keep it simple: Web. Social. Content. Done right.
-            </p>
+    <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black">
+      {/* Two-Path Hero Section */}
+      <section className="services-hero py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <h1 className="text-5xl md:text-6xl font-bold text-center mb-6 text-white">
+            How BLANQ Helps You Grow
+          </h1>
+          <p className="text-xl text-center text-gray-400 mb-16 max-w-3xl mx-auto">
+            Choose your starting point based on where your business is today
+          </p>
+
+          {/* Two-Path Layout */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20">
+            
+            {/* PATH 1: FREE TRIAL (LEFT SIDE) */}
+            <div className="glass-effect p-8 rounded-2xl border-2 border-amber-500/30 relative">
+              {/* "START HERE" Badge */}
+              <div className="absolute -top-4 left-8 bg-amber-500 text-black px-4 py-1 rounded-full text-sm font-bold">
+                START HERE
+              </div>
+              
+              <h2 className="text-3xl font-bold mb-4 mt-2">Free Content Trial</h2>
+              <p className="text-6xl font-bold text-amber-500 mb-4">$0</p>
+              <p className="text-gray-400 mb-6">
+                Try our content creation for 2 weeks. See the quality before committing.
+              </p>
+              
+              {/* Features List */}
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-amber-500 mr-3 flex-shrink-0" />
+                  3 photos + 3 videos + 2 stories
+                </li>
+                <li className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-amber-500 mr-3 flex-shrink-0" />
+                  Posted to your socials
+                </li>
+                <li className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-amber-500 mr-3 flex-shrink-0" />
+                  Performance report
+                </li>
+                <li className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-amber-500 mr-3 flex-shrink-0" />
+                  No commitment required
+                </li>
+              </ul>
+              
+              {/* CTA */}
+              <Link 
+                href="/trial" 
+                className="btn-primary-gold w-full text-center block hover:scale-105 active:scale-95 transition-transform"
+                onClick={() => events.trialCTAClicked('services-page')}
+              >
+                Start Free Trial →
+              </Link>
+            </div>
+
+            {/* PATH 2: CUSTOM WEBSITE (RIGHT SIDE) */}
+            <div className="glass-effect p-8 rounded-2xl border-2 border-white/10 relative">
+              {/* "READY TO SCALE?" Badge */}
+              <div className="absolute -top-4 left-8 bg-white/10 text-white px-4 py-1 rounded-full text-sm font-bold">
+                READY TO SCALE?
+              </div>
+              
+              <h2 className="text-3xl font-bold mb-4 mt-2">Custom Website</h2>
+              <p className="text-6xl font-bold text-white mb-4">
+                $1K<span className="text-2xl text-gray-400">+</span>
+              </p>
+              <p className="text-gray-400 mb-6">
+                Professional websites built to convert visitors into customers.
+              </p>
+              
+              {/* Features List */}
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
+                  Custom design (no templates)
+                </li>
+                <li className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
+                  Mobile-responsive & fast
+                </li>
+                <li className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
+                  SEO foundation included
+                </li>
+                <li className="flex items-center text-gray-300">
+                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
+                  Delivery in 3-4 weeks
+                </li>
+              </ul>
+              
+              {/* CTA */}
+              <Link 
+                href="/contact"
+                className="btn-secondary-glass w-full text-center block hover:scale-105 active:scale-95 transition-transform"
+              >
+                View Packages →
+              </Link>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            {services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                title={service.title}
-                description={service.description}
-                icon={service.icon}
-                href={service.href}
-                metrics={service.metrics}
-              />
-            ))}
-          </div>
-
-          {/* CTA Section */}
-          <div className="text-center bg-light-gray rounded-2xl p-12">
-            <h2 className="text-3xl font-bold text-charcoal mb-4">
-              Ready to get started?
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Let's discuss your project and see how we can help you grow.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton href="/contact" variant="primary" size="lg">
-                Get a Free Audit
-              </CTAButton>
-              <CTAButton href="/contact" variant="secondary" size="lg">
-                Book a Call
-              </CTAButton>
-            </div>
-          </div>
+      {/* Service Details Section */}
+      <section className="service-details py-12">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center mb-12 text-white">
+            What We Build
+          </h2>
+          
+          {/* You can add your service cards here */}
         </div>
       </section>
     </div>

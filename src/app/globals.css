@@ -166,3 +166,56 @@ body {
 .glow:hover {
   box-shadow: 0 0 30px rgba(255, 107, 107, 0.6);
 }
+
+/* New button styles */
+.btn-primary-gold {
+  background: linear-gradient(to right, rgb(245 158 11), rgb(202 138 4));
+  color: black;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.btn-primary-gold:hover {
+  box-shadow: 0 10px 15px -3px rgba(245 158 11 / 0.5);
+}
+
+.btn-secondary-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s;
+}
+
+.btn-secondary-glass:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.btn-tertiary-outline {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s;
+}
+
+.btn-tertiary-outline:hover {
+  border-color: rgb(245 158 11);
+  color: rgb(245 158 11);
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
